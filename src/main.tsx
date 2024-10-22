@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./index.css";
 import App from "./App.tsx";
+import Main from "./components/Main.tsx";
 import ErrorPage from "./components/ErrorPage.tsx";
 
 const router = createBrowserRouter([
@@ -13,6 +14,16 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <Main />,
+      },
+      {
+        path: "/posts/:postId",
+        element: <App />,
+      },
+    ],
   },
 ]);
 
