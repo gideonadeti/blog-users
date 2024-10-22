@@ -8,6 +8,7 @@ import "./index.css";
 import App from "./App.tsx";
 import Main from "./components/Main.tsx";
 import ErrorPage from "./components/ErrorPage.tsx";
+import PostPage from "./components/PostPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/posts/:postId",
-        element: <App />,
+        element: <PostPage />,
       },
     ],
   },
