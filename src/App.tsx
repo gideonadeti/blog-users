@@ -1,5 +1,6 @@
+import { Outlet } from "react-router-dom";
+
 import Header from "./components/Header";
-import Main from "./components/Main";
 
 export default function App() {
   return (
@@ -8,7 +9,7 @@ export default function App() {
       style={{ height: "100vh" }}
     >
       <Header />
-      <Main />
+      <Outlet />
     </div>
   );
 }
