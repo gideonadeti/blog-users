@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../utils/axios-instance";
 import { useTagsStore } from "../stores/tags";
 import { usePostsStore } from "../stores/posts";
+import Post from "./Post";
 
 export default function Content() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const { setTags } = useTagsStore();
-  const { setPosts } = usePostsStore();
+  const { setPosts, posts } = usePostsStore();
 
   useEffect(() => {
     async function fetchData() {
@@ -41,11 +42,16 @@ export default function Content() {
   {
     return (
       <div
-        className="content container-fluid py-3 overflow-y-auto"
+        className="content p-3 overflow-y-auto"
         style={{ maxHeight: "90vh" }}
       >
         {loading && <p>Loading...</p>}
         {error && <p>{error}</p>}
+
+        <ul className="list-group list-group-flush">
+          {posts.length > 0 &&
+            posts.map((post) => <Post key={post.id} post={post} />)}
+        </ul>
       </div>
     );
   }

@@ -13,7 +13,7 @@ export interface PostsStore {
   clearPosts: () => void;
 }
 
-interface Post {
+export interface Post {
   id: string;
   title: string;
   content: string;
