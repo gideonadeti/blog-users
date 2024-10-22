@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 
 import axiosInstance from "../utils/axios-instance";
 import { useTagsStore } from "../stores/tags";
+import { usePostsStore } from "../stores/posts";
 
 export default function Content() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const { setTags } = useTagsStore();
+  const { setPosts } = usePostsStore();
 
   useEffect(() => {
     async function fetchData() {
@@ -18,7 +20,7 @@ export default function Content() {
           axiosInstance.get("/tags"),
         ]);
 
-        console.table(postsResponse.data.posts);
+        setPosts(postsResponse.data.posts);
         setTags(tagsResponse.data.tags);
       } catch (error) {
         console.error(error);
@@ -30,7 +32,7 @@ export default function Content() {
     }
 
     fetchData();
-  }, [setTags]);
+  }, [setPosts, setTags]);
 
   function startFetch() {
     setError("");
